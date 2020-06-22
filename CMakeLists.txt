@@ -20,7 +20,11 @@ target_include_directories(bitmarksdk
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
+
 target_compile_features(bitmarksdk PUBLIC cxx_std_11)
+
+set_target_properties(bitmarksdk PROPERTIES COMPILE_FLAGS "-Wall -Werror")
+
 target_link_libraries(bitmarksdk
   PRIVATE json httplib OpenSSL::SSL OpenSSL::Crypto
 )
