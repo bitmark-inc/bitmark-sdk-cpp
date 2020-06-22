@@ -9,12 +9,13 @@ namespace Bitmark {
 
   using json = nlohmann::json;
 
-  NLOHMANN_JSON_SERIALIZE_ENUM(AssetRecord::Status, {
-    {AssetRecord::Status::PENDING, "pending"},
-    {AssetRecord::Status::CONFIRMED, "confirmed"},
-  })
+  NLOHMANN_JSON_SERIALIZE_ENUM(AssetRecord::Status,
+                               {
+                                 {AssetRecord::Status::PENDING, "pending"},
+                                 {AssetRecord::Status::CONFIRMED, "confirmed"},
+                               })
 
-  inline void to_json(json& j, const AssetRecord& r) {
+  inline void to_json(json &j, const AssetRecord &r) {
     j = json{
       {"id", r.id},
       {"name", r.name},
@@ -28,7 +29,7 @@ namespace Bitmark {
     };
   }
 
-  inline void from_json(const json& j, AssetRecord& r) {
+  inline void from_json(const json &j, AssetRecord &r) {
     j.at("id").get_to(r.id);
     j.at("name").get_to(r.name);
     j.at("metadata").get_to(r.metadata);
@@ -41,12 +42,14 @@ namespace Bitmark {
       j.at("created_at").get_to(r.created_at);
   }
 
-  NLOHMANN_JSON_SERIALIZE_ENUM(TransactionRecord::Status, {
-    {TransactionRecord::Status::PENDING, "pending"},
-    {TransactionRecord::Status::CONFIRMED, "confirmed"},
-  })
+  NLOHMANN_JSON_SERIALIZE_ENUM(
+    TransactionRecord::Status,
+    {
+      {TransactionRecord::Status::PENDING, "pending"},
+      {TransactionRecord::Status::CONFIRMED, "confirmed"},
+    })
 
-  inline void to_json(json& j, const TransactionRecord& r) {
+  inline void to_json(json &j, const TransactionRecord &r) {
     j = json{
       {"id", r.id},
       {"owner", r.owner},
@@ -62,7 +65,7 @@ namespace Bitmark {
     };
   }
 
-  inline void from_json(const json& j, TransactionRecord& r) {
+  inline void from_json(const json &j, TransactionRecord &r) {
     j.at("id").get_to(r.id);
     j.at("owner").get_to(r.owner);
     if (j.contains("previous_id") && !j.at("previous_id").is_null()) {
@@ -78,7 +81,7 @@ namespace Bitmark {
     j.at("countersign").get_to(r.countersign);
   }
 
-  inline void to_json(json& j, const HalfSignedOffer& r) {
+  inline void to_json(json &j, const HalfSignedOffer &r) {
     j = json{
       {"link", r.link},
       {"owner", r.owner},
@@ -86,13 +89,13 @@ namespace Bitmark {
     };
   }
 
-  inline void from_json(const json& j, HalfSignedOffer& r) {
+  inline void from_json(const json &j, HalfSignedOffer &r) {
     j.at("link").get_to(r.link);
     j.at("owner").get_to(r.owner);
     j.at("signature").get_to(r.signature);
   }
 
-  inline void to_json(json& j, const OfferRecord& r) {
+  inline void to_json(json &j, const OfferRecord &r) {
     j = json{
       {"id", r.id},
       {"from", r.from},
@@ -103,7 +106,7 @@ namespace Bitmark {
     };
   }
 
-  inline void from_json(const json& j, OfferRecord& r) {
+  inline void from_json(const json &j, OfferRecord &r) {
     j.at("id").get_to(r.id);
     j.at("from").get_to(r.from);
     j.at("to").get_to(r.to);
@@ -113,14 +116,16 @@ namespace Bitmark {
     j.at("created_at").get_to(r.created_at);
   }
 
-  NLOHMANN_JSON_SERIALIZE_ENUM(BitmarkRecord::Status, {
-    {BitmarkRecord::Status::ISSUING, "issuing"},
-    {BitmarkRecord::Status::TRANSFERRING, "transferring"},
-    {BitmarkRecord::Status::OFFERING, "offering"},
-    {BitmarkRecord::Status::SETTLED, "settled"},
-  })
+  NLOHMANN_JSON_SERIALIZE_ENUM(BitmarkRecord::Status,
+                               {
+                                 {BitmarkRecord::Status::ISSUING, "issuing"},
+                                 {BitmarkRecord::Status::TRANSFERRING,
+                                  "transferring"},
+                                 {BitmarkRecord::Status::OFFERING, "offering"},
+                                 {BitmarkRecord::Status::SETTLED, "settled"},
+                               })
 
-  inline void to_json(json& j, const BitmarkRecord& r) {
+  inline void to_json(json &j, const BitmarkRecord &r) {
     j = json{
       {"id", r.id},
       {"asset_id", r.asset_id},
@@ -137,7 +142,7 @@ namespace Bitmark {
     };
   }
 
-  inline void from_json(const json& j, BitmarkRecord& r) {
+  inline void from_json(const json &j, BitmarkRecord &r) {
     j.at("id").get_to(r.id);
     j.at("asset_id").get_to(r.asset_id);
     if (j.contains("head_id") && !j.at("head_id").is_null())
@@ -157,41 +162,41 @@ namespace Bitmark {
       j.at("confirmed_at").get_to(r.confirmed_at);
   }
 
-  inline void to_json(json& j, const GetTransactionResponse& r) {
+  inline void to_json(json &j, const GetTransactionResponse &r) {
     j = json{{"tx", r.tx}, {"asset", r.asset}};
   }
 
-  inline void from_json(const json& j, GetTransactionResponse& r) {
+  inline void from_json(const json &j, GetTransactionResponse &r) {
     j.at("tx").get_to(r.tx);
     if (j.contains("asset") && !j.at("asset").is_null())
       j.at("asset").get_to(r.asset);
   }
 
-  inline void to_json(json& j, const GetTransactionsResponse& r) {
+  inline void to_json(json &j, const GetTransactionsResponse &r) {
     j = json{{"txs", r.txs}, {"assets", r.assets}};
   }
 
-  inline void from_json(const json& j, GetTransactionsResponse& r) {
+  inline void from_json(const json &j, GetTransactionsResponse &r) {
     j.at("txs").get_to(r.txs);
     if (j.contains("assets") && !j.at("assets").is_null())
       j.at("assets").get_to(r.assets);
   }
 
-  inline void to_json(json& j, const GetBitmarkResponse& r) {
+  inline void to_json(json &j, const GetBitmarkResponse &r) {
     j = json{{"bitmark", r.bitmark}, {"asset", r.asset}};
   }
 
-  inline void from_json(const json& j, GetBitmarkResponse& r) {
+  inline void from_json(const json &j, GetBitmarkResponse &r) {
     j.at("bitmark").get_to(r.bitmark);
     if (j.contains("asset") && !j.at("asset").is_null())
       j.at("asset").get_to(r.asset);
   }
 
-  inline void to_json(json& j, const GetBitmarksResponse& r) {
+  inline void to_json(json &j, const GetBitmarksResponse &r) {
     j = json{{"bitmarks", r.bitmarks}, {"assets", r.assets}};
   }
 
-  inline void from_json(const json& j, GetBitmarksResponse& r) {
+  inline void from_json(const json &j, GetBitmarksResponse &r) {
     j.at("bitmarks").get_to(r.bitmarks);
     if (j.contains("assets") && !j.at("assets").is_null())
       j.at("assets").get_to(r.assets);

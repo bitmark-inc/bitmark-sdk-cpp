@@ -9,13 +9,13 @@
 namespace Bitmark {
   namespace Bitmark {
 
-    GetBitmarkResponse get(const std::string& bitmark_id);
+    GetBitmarkResponse get(const std::string &bitmark_id);
 
-    GetBitmarkResponse getWithAsset(const std::string& bitmark_id);
+    GetBitmarkResponse getWithAsset(const std::string &bitmark_id);
 
-    GetBitmarksResponse list(const BitmarkQueryBuilder& builder);
+    GetBitmarksResponse list(const BitmarkQueryBuilder &builder);
 
-  } // namespace Bitmark::Bitmark
+  } // namespace Bitmark
 } // namespace Bitmark
 
 #endif // BITMARK_SDK_BITMARK_H

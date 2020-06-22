@@ -10,9 +10,9 @@
 namespace Bitmark {
   namespace Asset {
 
-    AssetRecord get(const std::string& asset_id);
+    AssetRecord get(const std::string &asset_id);
 
-    std::vector<AssetRecord> list(const AssetQueryBuilder& builder);
+    std::vector<AssetRecord> list(const AssetQueryBuilder &builder);
 
   } // namespace Asset
 } // namespace Bitmark

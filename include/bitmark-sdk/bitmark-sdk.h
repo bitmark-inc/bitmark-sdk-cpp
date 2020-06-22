@@ -7,4 +7,3 @@
 #include <bitmark-sdk/sdk.h>
 #include <bitmark-sdk/transaction.h>
 #include <bitmark-sdk/version.h>
-

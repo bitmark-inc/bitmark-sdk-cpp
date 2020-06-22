@@ -18,46 +18,42 @@ namespace Bitmark {
     using json = nlohmann::json;
     using json_err = nlohmann::detail::exception;
 
-    GetTransactionResponse get(const std::string& transaction_id) {
+    GetTransactionResponse get(const std::string &transaction_id) {
       std::string path = std::string("txs/") + transaction_id + "?pending=true";
-      auto res = BitmarkSDK::get_client()->send_request(
-          detail::HTTPMethod::GET, path);
+      auto res =
+        BitmarkSDK::get_client()->send_request(detail::HTTPMethod::GET, path);
 
       try {
         json j = json::parse(res->body);
         return j.get<GetTransactionResponse>();
-      }
-      catch(json_err e) {
+      } catch (json_err e) {
         throw detail::from_json_error(e, res->body);
       }
     }
 
-    GetTransactionResponse getWithAsset(const std::string& transaction_id) {
-      std::string path = std::string("txs/") + transaction_id
-        + "?pending=true&asset=true";
-      auto res = BitmarkSDK::get_client()->send_request(
-          detail::HTTPMethod::GET, path);
+    GetTransactionResponse getWithAsset(const std::string &transaction_id) {
+      std::string path =
+        std::string("txs/") + transaction_id + "?pending=true&asset=true";
+      auto res =
+        BitmarkSDK::get_client()->send_request(detail::HTTPMethod::GET, path);
 
       try {
         json j = json::parse(res->body);
         return j.get<GetTransactionResponse>();
-      }
-      catch(json_err e) {
+      } catch (json_err e) {
         throw detail::from_json_error(e, res->body);
       }
     }
 
-
-    GetTransactionsResponse list(const TransactionQueryBuilder& builder) {
+    GetTransactionsResponse list(const TransactionQueryBuilder &builder) {
       std::string path = std::string("txs?") + builder.build();
-      auto res = BitmarkSDK::get_client()->send_request(
-          detail::HTTPMethod::GET, path);
+      auto res =
+        BitmarkSDK::get_client()->send_request(detail::HTTPMethod::GET, path);
 
       try {
         json j = json::parse(res->body);
         return j.get<GetTransactionsResponse>();
-      }
-      catch(json_err e) {
+      } catch (json_err e) {
         throw detail::from_json_error(e, res->body);
       }
     }

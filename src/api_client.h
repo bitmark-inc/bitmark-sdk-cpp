@@ -16,27 +16,26 @@ namespace Bitmark {
       POST,
       PATCH,
     };
-    
+
     class APIClient {
-     public:
-      APIClient(const char* url, const std::string& api_token);
+    public:
+      APIClient(const char *url, const std::string &api_token);
       ~APIClient();
 
-      response_t send_request(HTTPMethod method,
-                              const std::string& path);
+      response_t send_request(HTTPMethod method, const std::string &path);
 
       response_t send_request(HTTPMethod method,
-                              const std::string& path,
-                              const std::string& body);
+                              const std::string &path,
+                              const std::string &body);
 
       response_t send_request(HTTPMethod method,
-                              const std::string& path,
-                              const std::string& body,
-                              const httplib::Headers& headers);
+                              const std::string &path,
+                              const std::string &body,
+                              const httplib::Headers &headers);
 
-     private:
+    private:
       std::string api_token_;
-      httplib::SSLClient* client_ = nullptr;
+      httplib::SSLClient *client_ = nullptr;
     };
 
   } // namespace detail

@@ -9,11 +9,11 @@
 namespace Bitmark {
   namespace Transaction {
 
-    GetTransactionResponse get(const std::string& transaction_id);
+    GetTransactionResponse get(const std::string &transaction_id);
 
-    GetTransactionResponse getWithAsset(const std::string& transaction_id);
+    GetTransactionResponse getWithAsset(const std::string &transaction_id);
 
-    GetTransactionsResponse list(const TransactionQueryBuilder& builder);
+    GetTransactionsResponse list(const TransactionQueryBuilder &builder);
 
   } // namespace Transaction
 } // namespace Bitmark
