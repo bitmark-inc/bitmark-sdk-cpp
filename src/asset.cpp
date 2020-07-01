@@ -19,30 +19,28 @@ namespace Bitmark {
     using json = nlohmann::json;
     using json_err = nlohmann::detail::exception;
 
-    AssetRecord get(const std::string& asset_id) {
+    AssetRecord get(const std::string &asset_id) {
       std::string path = std::string("assets/") + asset_id + "?pending=true";
-      auto res = BitmarkSDK::get_client()->send_request(
-          detail::HTTPMethod::GET, path);
+      auto res =
+        BitmarkSDK::get_client()->send_request(detail::HTTPMethod::GET, path);
 
       try {
         json j = json::parse(res->body);
         return j.at("asset").get<AssetRecord>();
-      }
-      catch(json_err e) {
+      } catch (json_err e) {
         throw detail::from_json_error(e, res->body);
       }
     }
 
-    std::vector<AssetRecord> list(const AssetQueryBuilder& builder) {
+    std::vector<AssetRecord> list(const AssetQueryBuilder &builder) {
       std::string path = std::string("assets?") + builder.build();
-      auto res = BitmarkSDK::get_client()->send_request(
-          detail::HTTPMethod::GET, path);
+      auto res =
+        BitmarkSDK::get_client()->send_request(detail::HTTPMethod::GET, path);
 
       try {
         json j = json::parse(res->body);
         return j.at("assets").get<std::vector<AssetRecord>>();
-      }
-      catch(json_err e) {
+      } catch (json_err e) {
         throw detail::from_json_error(e, res->body);
       }
     }

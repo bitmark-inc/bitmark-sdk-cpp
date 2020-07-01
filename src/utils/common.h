@@ -10,14 +10,14 @@ namespace Bitmark {
   namespace detail {
 
     template <typename T>
-      inline std::string to_string(const T& val) {
-        std::ostringstream ss;
-        ss << std::boolalpha << val;
-        return ss.str();
-      }
+    inline std::string to_string(const T &val) {
+      std::ostringstream ss;
+      ss << std::boolalpha << val;
+      return ss.str();
+    }
 
-    inline void check_non_empty_str(const std::string& str,
-                                    const std::string& name) {
+    inline void check_non_empty_str(const std::string &str,
+                                    const std::string &name) {
       if (str.empty())
         throw InvalidArgumentError("\"" + name + "\" must not be empty");
     }
